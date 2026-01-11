@@ -1,0 +1,234 @@
+#include <iostream>
+#include <string>
+#include <conio.h>
+#include <windows.h>
+using namespace std;
+
+// Function to draw a box
+void drawBox(int width, int height)
+ {
+
+    for
+	 (int i = 0; i < width; i++) 
+        cout << "*";
+
+    cout << endl;
+
+
+    for 
+	(int i = 0; i < height - 2; i++) {
+
+        cout << "*";
+
+
+        for
+		 (int j = 0; j < width - 2; j++) 
+            cout << " ";
+
+        cout << "*\n";
+
+    }
+
+    for 
+	(int i = 0; i < width; i++) 
+        cout << "*";
+
+    cout << endl;
+
+}
+
+// Function to calculate BMI
+float calculateBMI(float weight, float height) {
+
+    return weight / (height * height);
+
+}
+
+int main() {
+
+    string name, bloodGroup, gender;
+
+    int age;
+
+    float weight, temperature, height;
+
+    char repeat;
+
+    // 1D array for diseases (important 15)
+    string diseases[15] =
+	 {
+	 	
+        "Diabetes","Hypertension","Asthma","Cold and Flu","Anemia",
+        "Heart Disease","Obesity","Arthritis","Migraine","Kidney Disease",
+        "Hepatitis","Malaria","Stroke","Tuberculosis","Allergy"
+    };
+
+    // 1D array for general tips (important 20)
+    string tips[20] =
+	 {
+	 	
+        "Drink 8 glasses of water daily","Exercise at least 30 min","Sleep 7-8 hours",
+        "Avoid smoking and drugs","Eat fresh and hygienic food","Wash hands regularly",
+        "Manage stress","Avoid junk food","Include fruits & vegetables","Regular health check-ups",
+        "Maintain healthy weight","Avoid excessive alcohol","Stay active","Practice meditation/yoga",
+        "Positive mindset","Take vitamin supplements if needed","Keep surroundings clean",
+        "Do stretching exercises","Monitor blood pressure regularly","Walk at least 5000 steps daily"
+    };
+
+    // Extra advice array (important 10)
+    string advice[10] = 
+	{
+		
+        "Walk 5000 steps daily","Take stairs instead of elevator","Avoid long screen time",
+        "Drink herbal tea","Maintain a daily routine","Include yoga/stretching",
+        "Stay hydrated","Practice deep breathing","Meditate 10 min daily","Avoid excessive social media"
+    };
+
+    do
+	 {
+
+        system("cls"); // Clear screen
+
+        // ===== GUI Header =====
+        drawBox(60, 5);
+        cout << "\n            HEALTH INSIGHT SYSTEM\n";
+        drawBox(60, 2);
+
+        // ----- User Input -----
+        cout << "\nEnter your name: ";
+        getline(cin, name);
+
+        cout << "Enter your age: ";
+        cin >> age;
+
+        cout << "Enter your gender (M/F): ";
+        cin >> gender;
+        cin.ignore();
+
+        cout << "Enter your blood group: ";
+        getline(cin, bloodGroup);
+
+        cout << "Enter your weight (kg): ";
+        cin >> weight;
+
+        cout << "Enter your height (meters): ";
+        cin >> height;
+
+        cout << "Enter your body temperature (Celsius): ";
+        cin >> temperature;
+        cin.ignore();
+
+        system("cls"); // Clear screen for GUI output
+
+        // ===== Display User Info in Box =====
+        drawBox(60, 10);
+
+        cout << "Name: " << name << endl;
+        cout << "Age: " << age << endl;
+        cout << "Gender: " << gender << endl;
+        cout << "Blood Group: " << bloodGroup << endl;
+        cout << "Weight: " << weight << " kg\n";
+        cout << "Height: " << height << " m\n";
+        cout << "Temperature: " << temperature << " C\n";
+
+        float bmi = calculateBMI(weight, height);
+
+        cout << "BMI: " << bmi << " (";
+
+        if(bmi < 18.5) 
+            cout << "Underweight)\n";
+            
+        else if(bmi < 25) 
+            cout << "Normal)\n";
+            
+        else if(bmi < 30) 
+            cout << "Overweight)\n";
+            
+        else 
+            cout << "Obese)\n";
+
+        drawBox(60, 2);
+
+        // ----- Basic Health Check -----
+        cout << "\n----- BASIC HEALTH CHECK -----\n";
+
+        if
+		 (temperature > 37.5) 
+            cout << "You have fever. Rest and drink fluids.\n";
+            
+        else 
+            cout << "Temperature is normal.\n";
+
+        if 
+		(weight > 90) 
+            cout << "Consider regular exercise.\n";
+            
+        else 
+            cout << "Weight is in healthy range.\n";
+
+        if
+		 (age > 50) 
+            cout << "Regular check-ups recommended.\n";
+
+        if 
+		(gender == "F" || gender == "f") 
+            cout << "Include calcium-rich food for bone health.\n";
+
+        // ----- Disease Menu -----
+        cout << "\n----- DISEASE MENU -----\n";
+
+        for
+		 (int i = 0; i < 15; i++) 
+		 {
+            cout << i + 1 << ". " << diseases[i] << endl;
+        }
+
+        int choice;
+        cout << "Select a disease (1-15): ";
+        cin >> choice;
+        cin.ignore();
+
+        cout << "\n----- PRECAUTIONS & DIET -----\n";
+
+        if
+		(choice >= 1 && choice <= 15)
+		{
+
+            cout << "Disease: " << diseases[choice-1] << "\n";
+
+            cout << "Precautions: Stay healthy, avoid triggers, and follow doctor's advice.\n";
+
+            cout << "Diet: Balanced and nutritious food, hydration, and vitamins.\n";
+
+        }
+		 else 
+            cout << "Invalid selection!\n";
+
+        // ----- Display General Tips -----
+        cout << "\n----- GENERAL HEALTH TIPS -----\n";
+
+        for
+		 (int i = 0; i < 20; i++) 
+            cout << i+1 << ". " << tips[i] << endl;
+
+        // ----- Display Extra Advice -----
+        cout << "\n----- EXTRA ADVICE -----\n";
+
+        for 
+		(int i = 0; i < 10; i++) 
+            cout << i+1 << ". " << advice[i] << endl;
+
+        // ----- Wait for user -----
+        cout << "\nDo you want to run again? (y/n): ";
+        cin >> repeat;
+        cin.ignore();
+
+    }
+	 while
+	 (repeat == 'y' || repeat == 'Y');
+
+    cout << "\nThank you for using Health Insight System!\nStay healthy and safe.\n";
+
+    return 0;
+
+}
